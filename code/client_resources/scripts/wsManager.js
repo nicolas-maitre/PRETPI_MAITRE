@@ -1,0 +1,6 @@
+function WebSocketManager(){
+	/*init*/
+	(function(){
+		
+	})();
+}
