@@ -5,7 +5,7 @@ function PagesManager(){
 	this.currentPage = ""; //default page
 	
 	this.changePage = function(pageName, options = {}){
-		console.log("change page to " + pageName + " from " + _this.currentPage);
+		console.log("change page from " + _this.currentPage + " to " + pageName);
 		if(_this.currentPage == pageName){ //page already shown
 			console.log("page already shown");
 			return false;
@@ -31,7 +31,7 @@ function PagesManager(){
 			return _this.pages[pageName];
 		}
 		//build page
-		var pageContainer = elements.pagesContainer.addElement('div', 'pageContainer ' + pageName + 'PageContainer');
+		var pageContainer = elements.pagesContainer.addElement('div', 'pageContainer ' + pageName.toUpperCase() + 'PageContainer');
 		var pageContent = {};
 		if(builder["build" + pageName.toUpperCase() + "Page"]){
 			pageContent = builder["build" + pageName.toUpperCase() + "Page"]({container: pageContainer, structure: currentPageStructure});
