@@ -38,22 +38,37 @@ function Builder(){
         var bottom = element.addElement('div', 'MWALeftPanelBottomSection');
         var searchInput = topBar.addElement('input', 'MWALeftPanelSerachInput');
         var searchButton = topBar.addElement('button', 'MWALeftPanelSearchButton');
+		var addButton = topBar.addElement('button', "MWALeftPanelAddButton");
+		//properties
+		addButton.innerText = "+";
         //return
         return{
             domElement: element,
             searchInput: searchInput,
-            searchButton: searchButton
+            searchButton: searchButton,
+			addButton: addButton
         }
 	}
+	
     function buildMWARightPanel(container){
         //create
         var element = container.addElement("div", "MWARightPanel");
+		var nameSection = element.addElement("div", "MWANameSection");
         var msgSection = element.addElement("div", "MWAMessagesSection");
         var writeSection = element.addElement("div", "MWAWriteSection");
+		var nameLeftSection = nameSection.addElement("div", "MWANameLeftSection");
+		var nameRightSection = nameSection.addElement("div", "MWANameRightSection");
+		var nameImage = nameLeftSection.addElement("div", "MWANameSectionImage");
+		var nameName = nameLeftSection.addElement("div", "MWANameSectionName");
+		var namePseudo = nameLeftSection.addElement("div", "MWANameSectionPseudo");
+		var nameInfoButton = nameRightSection.addElement("button", "MWANameSectionInfoButton");
         var input = writeSection.addElement("textarea", "MWAWriteSectionTextInput");
         var sendBtn = writeSection.addElement("button", "MWAWriteSectionSendButton");
         //propetries
-        input.style["height"] = "35px";
+		var writeHeight = 30;
+		msgSection.style["height"] = "calc(100% - " + (writeHeight + 10) + "px)";
+        input.style["height"] = "30px";
+		nameInfoButton.innerText = "i";
         //return
         return{
             domElement: element,
