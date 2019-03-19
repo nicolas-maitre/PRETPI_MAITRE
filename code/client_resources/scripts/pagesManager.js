@@ -10,11 +10,11 @@ function PagesManager(){
 			console.log("page already shown");
 			return false;
 		}
-		if(!pagesStructure[pageName]){//non existant page (in structure)
+		if(!pagesConfig[pageName]){//non existant page (in structure)
 			console.log("this page doesn't exist");
 			return false;
 		}
-		var currentPageStructure = pagesStructure[pageName];
+		var currentPageStructure = pagesConfig[pageName];
 		if(_this.currentPage){//hide current page
 			_this.pages[_this.currentPage].domElement.classList.add('none');
 		}

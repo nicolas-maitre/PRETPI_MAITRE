@@ -1,4 +1,4 @@
-var pagesStructure = {
+var pagesConfig = {
 	mwa:{
 		title: "Messaging Web App"
 	},
