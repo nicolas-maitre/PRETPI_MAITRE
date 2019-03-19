@@ -8,11 +8,11 @@ var wsManager = new WebSocketManager();
 
 //start by history
 var pageName = "mwa"; //default
-var pageFromUrl = window.location.pathname.split("/")[1];
+/*REMOVE COMMENT WHEN USED* /var pageFromUrl = window.location.pathname.split("/")[1];
 if(pageFromUrl){
 	pageName = pageFromUrl;
-}
-pagesManager.changePage(pageName);
+}*/
+pagesManager.changePage(pageName, /*jej*/{isPopState:true});
 
 //history popstate
 window.addEventListener("popstate", function(evt){
