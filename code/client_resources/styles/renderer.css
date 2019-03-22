@@ -10,6 +10,15 @@ body {
     padding: 0;
     margin: 0;
 }
+button{
+	cursor:pointer;
+	transition-property: transform;
+	transition-duration: 0.05s;
+	transition-timing-function: linear;
+}
+button:active{
+	transform:scale(0.85);
+}
 /*Top Menu*/
 .MWATopMenu {
     width: 100%;
@@ -86,11 +95,13 @@ body {
     display: inline-block;
     vertical-align: top;
 }
-.MWALeftPanelSerachInput {
+.MWALeftPanelSearchInput {
     width: calc(100% - 35px);
     margin: 0;
     border: 1px solid #999;
     margin-right: 5px;
+	vertical-align: middle;
+	display: inline-block;
 }
 .MWALeftPanelSearchButton {
     width: 30px;
@@ -101,10 +112,11 @@ body {
     background-size: contain;
     background-color: transparent;
     border: 0; 
+	vertical-align: middle;
+	display: inline-block;
 }
 .MWALeftPanelSearchButton:active{
     border: 1px;
-    transform:scale(0.85);
 }
 .MWAWriteSection {
     padding: 3px;
@@ -114,4 +126,68 @@ body {
 .MWAMessagesSection {
     overflow-x: hidden;
     overflow-y: scroll;
+}
+.MWANameSection {
+    height: 51px;
+    background-color: #efefef;
+    border-bottom: 1px solid #666;
+}
+.MWALeftPanelBottomSection {
+    position: relative;
+    height: calc(100% - 51px);
+}
+.MWALeftPanelAddButton {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background-color: #ff2525;
+    font-size: 35px;
+    line-height: 50px;
+}
+.MWAWriteSectionTextInput {
+    width: calc(100% - 50px - 10px);
+    margin-left: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: 30px;
+	display: inline-block;
+	vertical-align: middle;
+	resize: none;
+	border-radius: 5px;
+	border: 1px solid #999;
+}
+.MWAWriteSectionSendButton {
+    display: inline-block;
+    vertical-align: middle;
+    height: 30px;
+    width: 30px;
+    margin-left: 10px;
+    border-radius: 50%;
+    border: 2px solid #666;
+    font-size: 15px;
+    font-weight: bold;
+}
+.MWANameLeftSection {
+    width: calc(100% - 50px);
+    display: inline-block;
+    vertical-align: top;
+}
+.MWANameRightSection {
+    width: 50px;
+    display: inline-block;
+    vertical-align: top;
+	padding: 10px;
+}
+.MWANameSectionInfoButton {
+    height: 30px;
+    width: 30px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    font-size: 17px;
+    font-weight: bold;
+    color: #666;
 }

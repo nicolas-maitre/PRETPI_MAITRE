@@ -5,14 +5,15 @@ var elements = {};
 var builder = new Builder();
 var pagesManager = new PagesManager();
 var wsManager = new WebSocketManager();
+var actions = new Actions();
 
 //start by history
 var pageName = "mwa"; //default
-/*REMOVE COMMENT WHEN USED* /var pageFromUrl = window.location.pathname.split("/")[1];
+var pageFromUrl = window.location.pathname.split("/")[1];
 if(pageFromUrl){
 	pageName = pageFromUrl;
-}*/
-pagesManager.changePage(pageName, /*jej*/{isPopState:true});
+}
+pagesManager.changePage(pageName, {isPopState:false});
 
 //history popstate
 window.addEventListener("popstate", function(evt){

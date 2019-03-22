@@ -36,9 +36,9 @@ function Builder(){
 		var element = container.addElement('div', 'MWALeftPanel');
         var topBar = element.addElement('div', 'MWALeftPanelTopBar');
         var bottom = element.addElement('div', 'MWALeftPanelBottomSection');
-        var searchInput = topBar.addElement('input', 'MWALeftPanelSerachInput');
+        var searchInput = topBar.addElement('input', 'MWALeftPanelSearchInput');
         var searchButton = topBar.addElement('button', 'MWALeftPanelSearchButton');
-		var addButton = topBar.addElement('button', "MWALeftPanelAddButton");
+		var addButton = bottom.addElement('button', "MWALeftPanelAddButton");
 		//properties
 		addButton.innerText = "+";
         //return
@@ -66,14 +66,24 @@ function Builder(){
         var sendBtn = writeSection.addElement("button", "MWAWriteSectionSendButton");
         //propetries
 		var writeHeight = 30;
-		msgSection.style["height"] = "calc(100% - " + (writeHeight + 10) + "px)";
+		msgSection.style["height"] = "calc(100% - " + (writeHeight + 10) + "px - 51px)";
         input.style["height"] = "30px";
+		input.setAttribute("placeholder", "Ecrivez votre message");
 		nameInfoButton.innerText = "i";
+		sendBtn.innerText = ">";
+		//event
+		sendBtn.addEventListener("click", function(evt){
+			actions.sendInstantMessage(input);
+		});
         //return
         return{
             domElement: element,
             input: input,
-            sendButton: sendBtn
+            sendButton: sendBtn,
+			nameImage: nameImage,
+			nameText: nameName,
+			namePseudo: namePseudo,
+			nameInfoButton: nameInfoButton
         }
     }
 	

@@ -6,7 +6,7 @@ const CLIENT_RESOURCES_PATH = "/var/git/PRETPI_MAITRE/code/client_resources";
 
 function FilesManager(){
 	this.onRequest = function(urlObject, callBack){
-		console.log("urlObject", urlObject);
+		//console.log("urlObject", urlObject);
 		var path = "/main.html";
 		console.log("exists: ", CLIENT_RESOURCES_PATH + urlObject.pathname);
 		if(fs.existsSync(CLIENT_RESOURCES_PATH + urlObject.pathname) 
