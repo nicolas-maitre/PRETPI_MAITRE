@@ -75,6 +75,10 @@ function Builder(){
 		sendBtn.addEventListener("click", function(evt){
 			actions.sendInstantMessage(input);
 		});
+		nameInfoButton.addEventListener("click", function(evt){
+			//test
+			
+		});
         //return
         return{
             domElement: element,
@@ -88,4 +92,17 @@ function Builder(){
     }
 	
 	/*LOGIN*/
+	
+	/*CONTENT ADAPTERS*/
+	this.buildMessageAdapter = function(data, options){
+		/*data{
+			
+		}
+		*/
+	}
+	
+	//placholder
+	this.buildMessagePlaceholder = function(){
+		
+	}
 }

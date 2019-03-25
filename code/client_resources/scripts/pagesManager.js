@@ -24,6 +24,9 @@ function PagesManager(){
 			history.pushState({pageName:pageName}, "Messaging Web App", "/mwa");
 		}
 		
+		//title
+		document.title = "Messaging Web App - " + pageName;
+		
 		_this.currentPage = pageName;
 		
 		if(_this.pages[pageName]){//show already loaded page

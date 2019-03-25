@@ -7,3 +7,8 @@ Element.prototype.addElement = function(type, className, options){
 	//if(typeof options === 'object'){}
 	return newElement;
 }
+
+var utility = {};
+utility.getImageAPIUrl = function(){
+	
+}
