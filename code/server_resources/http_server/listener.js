@@ -6,7 +6,7 @@ const filesmanager = require("./fs/filesmanager");
 
 var server = http.createServer(onRequest);
 server.listen(80);
-console.log("server started");
+console.log("http server started");
 
 function onRequest(request, result){
 	console.log("[" + (new Date(Date.now())).toDateString() + "] request received from: " + request.connection.remoteAddress);
