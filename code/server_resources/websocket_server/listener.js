@@ -2,7 +2,6 @@
 const http = require('http');
 const websocket = require('websocket');
 const wsmanager = require('./ws/websocketmanager');
-
 //"http" listener
 var httpServer = http.createServer(function(req, res){
 	console.log("onhttprequest");

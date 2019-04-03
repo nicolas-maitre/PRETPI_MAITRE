@@ -66,7 +66,7 @@ button:active{
     border: 1px solid #666;
 }
 
-/*MWA Sections*/
+/*MWA Page*/
 .MWAMainSection {
     width: 100%;
     height: calc(100vh - 40px);
@@ -124,8 +124,7 @@ button:active{
     background-color: #dedede;
 }
 .MWAMessagesSection {
-    overflow-x: hidden;
-    overflow-y: scroll;
+    position: relative;
 }
 .MWANameSection {
     height: 51px;
@@ -190,4 +189,97 @@ button:active{
     font-size: 17px;
     font-weight: bold;
     color: #666;
+}
+.MWANameSectionImage {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-position: center;
+    background-size: cover;
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+	margin: 5px;
+}
+.MWANameSectionName {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: calc(100% - 50px);
+    padding-left: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 22px;
+}
+
+.groupMessageSection {
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+	padding-top: 10px;
+}
+/*Message adapter*/
+.messageAdapterLine.selfMessage {
+    text-align: right;
+}
+.messageAdapterBox {
+    display: inline-block;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    min-width: 170px;
+	max-width: calc(100% - 50px);
+    border-radius: 5px;
+}
+.messageAdapterBox.foreignMessage {
+    background-color: lightgreen;
+}
+.messageAdapterBox.selfMessage {
+    background-color: lightblue;
+}
+.messageAdapterName {
+    color: #666;
+}
+.messageAdapterText {
+    font-size: 20px;
+    text-align: left;
+    display: inline-block;
+}
+.messageAdapterTime {
+    color: #444;
+    font-size: 12px;
+}
+.messageAdapterTime.selfMessage {
+    text-align: left;
+}
+.messageAdapterTime.foreignMessage {
+    text-align: right;
+}
+/*loginPage*/
+.LOGINPageContainer {
+    text-align: center;
+}
+.loginFormWindow {
+    border: 1px solid #ccc;
+    display: inline-block;
+    height: 300px;
+    width: 350px;
+    box-shadow: 0 0 20px #666;
+    margin-top: calc(50vh - 150px);
+}
+.loginTempUserButton {
+    display: inline-block;
+    margin: 5px;
+    width: 150px;
+    height: 50px;
+    font-size: 23px;
+    margin-top: calc(110px);
+}
+.loginForm {
+    padding: 10px;
 }

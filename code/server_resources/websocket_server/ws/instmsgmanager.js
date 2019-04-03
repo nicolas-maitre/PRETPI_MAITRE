@@ -1,7 +1,8 @@
 "use strict";
 const database = require('../../classes/databasemanager');
 const rights = require('../../classes/rightsmanager');
-function InstantMessagingManager(){
+function InstantMessagingManager(wsManager){
+	var _this = this;
 	this.addMessage = function(params){
 		console.log("add message", params);
 		if(!rights.isAllowed(params.auth, "addMessage", params.data)){
@@ -25,23 +26,49 @@ function InstantMessagingManager(){
 				return;
 			}
 			console.log("add message in db sucess!");
-			notifyGroup(messageData.groupId);
+			
+			var data = {
+				groupId: messageData.groupId,
+				text: messageData.text,
+				userId: params.auth.id,
+				timestamp: Date.now()
+			};
+			
+			_this.notifyGroup({
+				groupId: messageData.groupId,
+				wsToken: params.wsToken,
+				action: "newMessage",
+				data: data
+			});
 		});
 	};
-	function notifyGroup(groupId, message){
+	this.notifyGroup = function(messageParams){
+		/*messageParams{
+			groupId,
+			wsToken,
+			action,
+			data
+		}*/
+		console.log("wsManager?", typeof wsManager);
 		//get group
 		database.select({
 			fields: "users_id",
 			tableName: "user_groups",
 			where: "groups_id = ?",
-			data: [groupId]
+			data: [messageParams.groupId]
 		}, function(error = false, result = false){
 			if(error){
 				console.log("notifyGroup select error:", error);
 				return;
 			}
 			console.log("notifyGroup select success: ", result);
+			
+			for(var indResult=0; indResult < result.length; indResult++){
+				var userId = result[indResult].users_id;
+				console.log("current user id", userId);
+				wsManager.sendMessageToUser(userId, messageParams.action, messageParams.data);
+			}
 		});
-	}
+	};
 }
-module.exports = new InstantMessagingManager();
+module.exports = InstantMessagingManager;

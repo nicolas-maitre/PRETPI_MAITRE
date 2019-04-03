@@ -49,7 +49,6 @@ function Builder(){
 			addButton: addButton
         }
 	}
-	
     function buildMWARightPanel(container){
         //create
         var element = container.addElement("div", "MWARightPanel");
@@ -75,13 +74,15 @@ function Builder(){
 		sendBtn.addEventListener("click", function(evt){
 			actions.sendInstantMessage(input);
 		});
-		nameInfoButton.addEventListener("click", function(evt){
-			//test
-			
-		});
+		
+		//test hardcoded
+		nameName.innerText = "Nicolas Glassey, Nicolas Maitre";
+		nameImage.style.backgroundImage = "url(/images/demo/dropbox.png)";
+		
         //return
         return{
             domElement: element,
+			msgSection: msgSection,
             input: input,
             sendButton: sendBtn,
 			nameImage: nameImage,
@@ -92,13 +93,73 @@ function Builder(){
     }
 	
 	/*LOGIN*/
+	this.buildLOGINPage = function(params){
+		var form = buildLoginForm(params.container);
+		return {
+			form: form
+		}
+	}
+	function buildLoginForm(container){
+		var formWindow = container.addElement('div', 'loginFormWindow');
+		var form = formWindow.addElement(/*'form'*/ 'div', 'loginForm');
+		//temp user selector
+		var buttonUser1 = form.addElement('button', 'loginTempUserButton');
+		var buttonUser2 = form.addElement('button', 'loginTempUserButton');
+		
+		//properties
+		buttonUser1.innerText = "nmaitre";
+		buttonUser2.innerText = "nglassey";
+		
+		//events
+		buttonUser1.addEventListener('click', function(){
+			userObject = {
+				id: "bb686737-5080-11e9-809c-b827eb4f1633",
+				token: "1234-1234-1234-1234-1234"
+			};
+			wsManager = new WebSocketManager();
+			pagesManager.changePage('mwa');
+		});
+		
+		buttonUser2.addEventListener('click', function(){
+			userObject = {
+				id: "f319ca59-5080-11e9-809c-b827eb4f1633",
+				token: "2345-2345-2345-2345-2345"
+			};
+			wsManager = new WebSocketManager();
+			pagesManager.changePage('mwa');
+		});
+		
+		return{
+			domElement: formWindow
+		}
+	}
 	
 	/*CONTENT ADAPTERS*/
-	this.buildMessageAdapter = function(data, options){
+	this.buildMessageAdapter = function(container, data, options){
+		console.log("buildMessageAdapter", data);
 		/*data{
-			
+			userObject,
+			text,
+			imageId,
+			timestamp
 		}
 		*/
+		var extraClass = "foreignMessage";
+		if(userObject.id == data.userObject.id){
+			extraClass = "selfMessage";
+		}
+		//create
+		var line = container.addElement('div', 'messageAdapterLine ' + extraClass);
+		var box = line.addElement('div', 'messageAdapterBox ' + extraClass);
+		var name = box.addElement('div', 'messageAdapterName');
+		var text = box.addElement('div', 'messageAdapterText');
+		var time = box.addElement('div', 'messageAdapterTime ' + extraClass);
+		
+		//data
+		name.innerText = data.userObject.first_name + " " + data.userObject.last_name;
+		text.innerText = data.text;
+		var displayDate = new Date(data.timestamp);
+		time.innerText = displayDate.getHours() + "h" + displayDate.getMinutes();
 	}
 	
 	//placholder
