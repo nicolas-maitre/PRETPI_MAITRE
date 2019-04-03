@@ -3,6 +3,7 @@
 const http = require('http');
 const url = require('url');
 const filesmanager = require("./fs/filesmanager");
+const api = require("./api/apiEndpoint");
 
 var server = http.createServer(onRequest);
 server.listen(80);
@@ -16,7 +17,7 @@ function onRequest(request, result){
 	var endpoint = pathArray[1];
 	switch(endpoint){
 		case 'api':
-			console.log("api call");
+			api.onRequest(parsedUrl);
 		break;
 		case 'imagesApi':
 			console.log("images api call");

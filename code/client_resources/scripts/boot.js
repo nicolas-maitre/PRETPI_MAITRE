@@ -11,9 +11,10 @@ var pagesManager = new PagesManager();
 var wsManager = new WebSocketManager();
 var actions = new Actions();
 var messagingActions = new MessagingActions();
+var apiManager = new ApiManager();
 
 //start by history
-var pageName = "mwa"; //default
+var pageName = "login"; //default
 if(!NOSERVER_ENV){
 	var pageFromUrl = window.location.pathname.split("/")[1];
 	if(pageFromUrl){

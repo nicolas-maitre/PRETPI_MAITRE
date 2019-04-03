@@ -41,7 +41,14 @@ function WebSocketManager(){
 	this.actionMethods = {};
 	this.actionMethods.initiateConnection = function(params){
 		console.log("initiate connection", params);
+		//set wsToken
 		connectionToken = params.connectionToken;
+		//final init step
+		_this.sendMessage("linkUserToConnection", {userId:userObject.id});
+	}
+	this.actionMethods.newMessage = function(params){
+		//tmp
+		messagingActions.displayNewMessage(params);
 	}
 	
 	//methods
@@ -60,5 +67,7 @@ function WebSocketManager(){
 		}
 		_this.connection.send(JSON.stringify(object));
 		console.log("message sent", object);
+		
+		callBack({});
 	};
 }

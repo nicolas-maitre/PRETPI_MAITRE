@@ -202,3 +202,4 @@ INSERT INTO friends		SET user_id_0="bb686737-5080-11e9-809c-b827eb4f1633", user_
 INSERT INTO groups 		SET id="0000-0000-0000-0000-0000", creation_time=CURRENT_TIMESTAMP(), name="Nicolas Maitre, Nicolas Glassey", type="private", active=1;
 INSERT INTO user_groups SET users_id="bb686737-5080-11e9-809c-b827eb4f1633", groups_id="0000-0000-0000-0000-0000", creation_time=CURRENT_TIMESTAMP(), active=1;
 INSERT INTO user_groups SET users_id="f319ca59-5080-11e9-809c-b827eb4f1633", groups_id="0000-0000-0000-0000-0000", creation_time=CURRENT_TIMESTAMP(), active=1;
+INSERT INTO tokens SET id=UUID(), value='2345-2345-2345-2345-2345', type='session', expiration_time=0, active=1, user_id='f319ca59-5080-11e9-809c-b827eb4f1633';

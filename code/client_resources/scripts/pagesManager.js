@@ -21,7 +21,7 @@ function PagesManager(){
 		
 		//history management
 		if(!options.isPopState){
-			history.pushState({pageName:pageName}, "Messaging Web App", "/mwa");
+			history.pushState({pageName:pageName}, "Messaging Web App", "/" + pageName);
 		}
 		
 		//title
@@ -44,6 +44,13 @@ function PagesManager(){
 			elements: pageContent
 		};
 		return _this.pages[pageName];
+	};
+	this.getCurrentPage = function(){
+		if(_this.pages[_this.currentPage]){
+			return _this.pages[_this.currentPage]
+		}
+		console.log("no current page???", _this.pages);
+		return {};
 	};
 	/*init*/
 	(function(){
