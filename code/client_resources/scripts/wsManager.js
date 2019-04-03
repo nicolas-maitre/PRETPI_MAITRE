@@ -39,9 +39,6 @@ function WebSocketManager(){
 	
 	//action methods
 	this.actionMethods = {};
-	this.actionMethods.newInstantMessage = function(params){
-		console.log("newInstantMessage action");
-	}
 	this.actionMethods.initiateConnection = function(params){
 		console.log("initiate connection", params);
 		connectionToken = params.connectionToken;
@@ -56,7 +53,8 @@ function WebSocketManager(){
 		}
 		
 		var object = {
-			token: connectionToken,
+			auth:userObject,
+			wsToken: connectionToken,
 			action: action,
 			data: data
 		}

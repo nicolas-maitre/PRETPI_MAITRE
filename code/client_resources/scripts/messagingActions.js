@@ -1,4 +1,7 @@
 function MessagingActions(){
+	this.currentGroup = "0000-0000-0000-0000-0000";
+	this.groups = {};
+	
 	this.displayMessages = function(dataArray, options){
 		
 	}

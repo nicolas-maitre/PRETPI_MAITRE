@@ -26,14 +26,12 @@ function WebSocketManager(){
 			console.log("message action does not exist");
 			return;
 		}
-		_this.actionMethods[action](messageObject.data);
+		_this.actionMethods[action](messageObject);
 	}
 
 	//action methods
 	this.actionMethods = {};
-	this.actionMethods.sendInstantMessage = function(params){
-		console.log("send instant message action", params);
-	}
+	this.actionMethods.addMessage = instmsgmanager.addMessage;
 	
 	//methods
 	this.initiateConnection = function(connection){

@@ -4,9 +4,11 @@ function Actions(){
 			console.log("input is empty");
 			return;
 		}
-		
-		wsManager.sendMessage("sendInstantMessage", {text:input.value});
-		
+		var messageObject = {
+			groupId: messagingActions.currentGroup,
+			text: input.value
+		}
+		wsManager.sendMessage("addMessage", messageObject);
 		input.value = "";
 	}
 }
