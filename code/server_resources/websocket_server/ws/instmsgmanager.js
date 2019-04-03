@@ -63,6 +63,7 @@ function InstantMessagingManager(wsManager){
 			}
 			console.log("notifyGroup select success: ", result);
 			
+			//send notif to each user in the group
 			for(var indResult=0; indResult < result.length; indResult++){
 				var userId = result[indResult].users_id;
 				console.log("current user id", userId);

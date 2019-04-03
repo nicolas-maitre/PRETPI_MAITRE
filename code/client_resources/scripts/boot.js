@@ -1,7 +1,4 @@
-var userObject = {
-	id: "bb686737-5080-11e9-809c-b827eb4f1633",
-	token: "1234-1234-1234-1234-1234"
-};
+var userObject = {id: "", token: ""};
 var elements = {};
 var groups = {};
 

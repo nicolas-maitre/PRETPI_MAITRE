@@ -1,3 +1,8 @@
+/*
+name: Nicolas Maitre
+version: 03.04.2019
+*/
+
 const uuidv4 = require('uuid/v4');
 const ConnectionObject = require('./connectionobject');
 const rights = require('../../classes/rightsmanager');
@@ -29,6 +34,7 @@ function WebSocketManager(listenerRef){
 			console.log("message action does not exist");
 			return;
 		}
+		//callBack to assigned action method
 		_this.actionMethods[action](messageObject);
 	}
 
@@ -68,7 +74,7 @@ function WebSocketManager(listenerRef){
 		connection.sendMessage(action, messageObject);
 	};
 	//getters
-	this.getConnection = function(userId){
+	this.getConnection = function(userId){ //this gets the websocket connection by user
 		if(!_this.userConnections[userId]){
 			console.log("no active ws connection for user", userId);
 			return false;
