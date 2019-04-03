@@ -1,0 +1,7 @@
+YES! 1. push message to client
+YES! 2. allow login with other user
+3. build nice message box
+MOUAIS. 4. get messages from group
+5. get groups
+
+API MADE IN 1 HOUR - NOT SECURED
