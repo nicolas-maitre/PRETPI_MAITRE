@@ -1,9 +1,16 @@
-"use strict"
+"use strict";
+/*
+project: Messaging Web App
+description: manages the page building framework
+author: Nicolas Maitre
+version: 03.04.2019
+*/
 function PagesManager(){
 	var _this = this;
 	this.pages = {};
 	this.currentPage = ""; //default page
 	
+	//change current page to page name
 	this.changePage = function(pageName, options = {}){
 		console.log("change page from " + _this.currentPage + " to " + pageName);
 		if(_this.currentPage == pageName){ //page already shown
@@ -14,29 +21,31 @@ function PagesManager(){
 			console.log("this page doesn't exist");
 			return false;
 		}
-		var currentPageStructure = pagesConfig[pageName];
+		var currentPageStructure = pagesConfig[pageName]; //get page config
 		if(_this.currentPage){//hide current page
 			_this.pages[_this.currentPage].domElement.classList.add('none');
 		}
 		
-		//history management
+		//add new page to history
 		if(!options.isPopState){
 			history.pushState({pageName:pageName}, "Messaging Web App", "/" + pageName);
 		}
 		
-		//title
+		//page title (document)
 		document.title = "Messaging Web App - " + pageName;
 		
 		_this.currentPage = pageName;
 		
-		if(_this.pages[pageName]){//show already loaded page
-			_this.pages[pageName].domElement.classList.remove('none');
+		//page already built
+		if(_this.pages[pageName]){
+			_this.pages[pageName].domElement.classList.remove('none'); //show page
 			return _this.pages[pageName];
 		}
 		//build page
-		var pageContainer = elements.pagesContainer.addElement('div', 'pageContainer ' + pageName.toUpperCase() + 'PageContainer');
+		var pageContainer = elements.pagesContainer.addElement('div', 'pageContainer ' + pageName.toUpperCase() + 'PageContainer');  //creates page container
 		var pageContent = {};
 		if(builder["build" + pageName.toUpperCase() + "Page"]){
+			//calls the page building method formed by the page name
 			pageContent = builder["build" + pageName.toUpperCase() + "Page"]({container: pageContainer, structure: currentPageStructure});
 		}
 		_this.pages[pageName] = {
@@ -45,6 +54,8 @@ function PagesManager(){
 		};
 		return _this.pages[pageName];
 	};
+	
+	/*getters*/
 	this.getCurrentPage = function(){
 		if(_this.pages[_this.currentPage]){
 			return _this.pages[_this.currentPage]
@@ -52,9 +63,10 @@ function PagesManager(){
 		console.log("no current page???", _this.pages);
 		return {};
 	};
+	
 	/*init*/
 	(function(){
-		//prepare page
+		//builds the page containers container
 		elements.pagesContainer = document.body.addElement('div', 'pagesContainer');
 	})();
 }

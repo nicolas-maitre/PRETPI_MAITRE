@@ -1,6 +1,12 @@
 "use strict";
+/*
+project: Messaging Web App
+description: contains every elements builder.
+author: Nicolas Maitre
+version: 03.04.2019
+*/
 function Builder(){
-	/*MWA*/
+	/*Messaging Web App Page*/
 	this.buildMWAPage = function(params){
 		var topMenu = buildMWATopMenu(params.container);
         var mainSection = params.container.addElement("div", "MWAMainSection");
@@ -92,7 +98,7 @@ function Builder(){
         }
     }
 	
-	/*LOGIN*/
+	/*Login Page*/
 	this.buildLOGINPage = function(params){
 		var form = buildLoginForm(params.container);
 		return {
@@ -102,7 +108,7 @@ function Builder(){
 	function buildLoginForm(container){
 		var formWindow = container.addElement('div', 'loginFormWindow');
 		var form = formWindow.addElement(/*'form'*/ 'div', 'loginForm');
-		//temp user selector
+		//build a user selector instead of a  login form for test purposes
 		var buttonUser1 = form.addElement('button', 'loginTempUserButton');
 		var buttonUser2 = form.addElement('button', 'loginTempUserButton');
 		
@@ -110,7 +116,7 @@ function Builder(){
 		buttonUser1.innerText = "nmaitre";
 		buttonUser2.innerText = "nglassey";
 		
-		//events
+		//hardcoded user login events
 		buttonUser1.addEventListener('click', function(){
 			userObject = {
 				id: "bb686737-5080-11e9-809c-b827eb4f1633",
@@ -134,7 +140,7 @@ function Builder(){
 		}
 	}
 	
-	/*CONTENT ADAPTERS*/
+	/*CONTENT ADAPTERS*/ //used to build an element containeing dynamic data
 	this.buildMessageAdapter = function(container, data, options){
 		console.log("buildMessageAdapter", data);
 		/*data{
@@ -160,10 +166,5 @@ function Builder(){
 		text.innerText = data.text;
 		var displayDate = new Date(data.timestamp);
 		time.innerText = displayDate.getHours() + "h" + displayDate.getMinutes();
-	}
-	
-	//placholder
-	this.buildMessagePlaceholder = function(){
-		
 	}
 }

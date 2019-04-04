@@ -1,7 +1,15 @@
+"use strict";
+/*
+project: Messaging Web App
+description: contains methods to access and manage the database
+author: Nicolas Maitre
+version: 03.04.2019
+*/
 const credentials = require("../private/credentials");
 const mariadb = require("mariadb");
 const dbName = "messaging_web_app_db";
-const dbPool = mariadb.createPool({
+
+const dbPool = mariadb.createPool({ //creates an connection pool to the db
 	host: 'localhost',
     user: 'mwa_user', 
 	database: dbName,
@@ -11,7 +19,7 @@ const dbPool = mariadb.createPool({
 function DatabaseManager(){
 	var _this = this;
 	//wrapper functions
-	this.insertInto = async function(tableName, object, options, callBack){
+	this.insertInto = async function(tableName, object, options, callBack){ //inserts data in the database
 		/*options
 			directFields = {};
 		*/
@@ -22,10 +30,11 @@ function DatabaseManager(){
 			directFields = options.directFields;
 		}
 		
+		//builds fields in request
 		for(indField in object){
 			textRequest += indField + " = ";
 			
-			if(directFields[indField]){
+			if(directFields[indField]){ //fields that shouldn't be sql protected
 				textRequest += object[indField];
 			} else {
 				textRequest += "?";
@@ -38,10 +47,10 @@ function DatabaseManager(){
 		
 		console.log("insertInto request", textRequest);
 		
-		_this.queryDb(textRequest, dataRequest, callBack);
+		_this.queryDb(textRequest, dataRequest, callBack);//calls the database
 	};
 	
-	this.select = async function(params = {}, callBack){
+	this.select = async function(params = {}, callBack){ //get data from the database
 		/*params
 			fields (text),
 			tableName (text),
@@ -50,6 +59,7 @@ function DatabaseManager(){
 			extraText (text)
 		*/
 		var dataRequest = (params.data ? params.data : []);
+		//builds request
 		var textRequest = "SELECT ";
 		textRequest += (params.fields ? params.fields + ", active" : "*");
 		textRequest += " FROM " + params.tableName;
@@ -62,13 +72,13 @@ function DatabaseManager(){
 		textRequest += ";";
 		
 		console.log("select request:", textRequest);
-		_this.queryDb(textRequest, dataRequest, function(error = false, result = false){
+		_this.queryDb(textRequest, dataRequest, function(error = false, result = false){ //calls the db
 			if(error){
 				callBack(error, false);
 				return;
 			}
 			
-			//clean result
+			//clean result from metadata
 			var returnResult = [];
 			for(var indResult = 0; indResult < result.length; indResult++){
 				var currentResult = result[indResult];
