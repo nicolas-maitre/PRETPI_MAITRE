@@ -27,7 +27,7 @@ function PagesManager(){
 		}
 		
 		//add new page to history
-		if(!options.isPopState){
+		if(!options.isPopState && !NOSERVER_ENV){
 			history.pushState({pageName:pageName}, "Messaging Web App", "/" + pageName);
 		}
 		
