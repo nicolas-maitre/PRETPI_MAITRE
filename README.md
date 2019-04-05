@@ -5,7 +5,7 @@ A messaging web app using Websocket technology
 - Raspberry pi with raspbian or any server running a debian-like OS
 - The ports `80` and `8080` must be open on your network.
 
-##Node modules
+## Node modules
 The node modules are already included in the project directory.
 - mariadb
 - uuid
